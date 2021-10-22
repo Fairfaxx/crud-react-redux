@@ -24,6 +24,91 @@
       "name": "Jugo de Fresa",
       "price": "200",
       "id": 5
+    },
+    {
+      "name": "Federico Lemaire",
+      "price": 1,
+      "id": 6
+    },
+    {
+      "name": "Federico Lemaire",
+      "price": 1,
+      "id": 7
+    },
+    {
+      "name": "Federico Lemaire",
+      "price": 1,
+      "id": 8
+    },
+    {
+      "name": "Federico Lemaire",
+      "price": 1,
+      "id": 9
+    },
+    {
+      "name": "Federico Lemaire",
+      "price": 1,
+      "id": 10
+    },
+    {
+      "name": "Federico Lemaire",
+      "price": 1,
+      "id": 11
+    },
+    {
+      "name": "Federico Lemaire",
+      "price": 1,
+      "id": 12
+    },
+    {
+      "name": "Federico Lemaire",
+      "price": 1,
+      "id": 13
+    },
+    {
+      "name": "Federico Lemaire",
+      "price": 1,
+      "id": 14
+    },
+    {
+      "name": "Apple Juice",
+      "price": 199,
+      "id": 15
+    },
+    {
+      "name": "Butter",
+      "price": 175,
+      "id": 16
+    },
+    {
+      "name": "Federico Lemaire",
+      "price": 1,
+      "id": 17
+    },
+    {
+      "name": "Milk 1Lt",
+      "price": 125,
+      "id": 18
+    },
+    {
+      "name": "Yerba 1Kg",
+      "price": 501,
+      "id": 19
+    },
+    {
+      "name": "Toilet paper",
+      "price": 350,
+      "id": 20
+    },
+    {
+      "name": "Empanadas x12",
+      "price": 1001,
+      "id": 21
+    },
+    {
+      "name": "Apple Juice",
+      "price": 100,
+      "id": 22
     }
   ]
 }

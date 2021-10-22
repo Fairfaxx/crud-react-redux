@@ -13,6 +13,10 @@ const NewProduct = () => {
   //Use useDispatch to create a new function
   const dispatch = useDispatch();
 
+  // Getting the state 
+  const loading = useSelector(state => state.products.loading);
+  const error = useSelector(state => state.products.error)
+
   // Call the action for productAction
   const addProduct = (product) => {
     dispatch(createNewProductAction(product));
@@ -33,6 +37,9 @@ const NewProduct = () => {
       name, 
       price
     });
+
+    setName('')
+    setPrice('')
   };
 
   return (
@@ -73,6 +80,14 @@ const NewProduct = () => {
                 Add
               </button>
             </form>
+            {loading && (
+              <h3 className="bg-success mt-4 p-2 text-center">Loading...</h3>
+            )}
+            {error && (
+              <h3 className="alert alert-danger mt-4 p-2 text-white text-center">
+                There was an error while loading
+              </h3>
+            )}
           </div>
         </div>
       </div>
