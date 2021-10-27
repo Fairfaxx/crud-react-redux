@@ -5,17 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { createNewProductAction } from "../actions/productActions";
 
-const NewProduct = () => {
+const NewProduct = ({ history }) => {
   //State of the component
   const [name, setName] = useState("");
-  const [price, setPrice] = useState('');
+  const [price, setPrice] = useState("");
 
   //Use useDispatch to create a new function
   const dispatch = useDispatch();
 
-  // Getting the state 
-  const loading = useSelector(state => state.products.loading);
-  const error = useSelector(state => state.products.error)
+  // Getting the state
+  const loading = useSelector((state) => state.products.loading);
+  const error = useSelector((state) => state.products.error);
 
   // Call the action for productAction
   const addProduct = (product) => {
@@ -33,13 +33,16 @@ const NewProduct = () => {
     //Check for errors
 
     //Create new product
-    addProduct({ 
-      name, 
-      price
+    addProduct({
+      name,
+      price,
     });
 
-    setName('')
-    setPrice('')
+    setName("");
+    setPrice("");
+
+    //Redirect to home page
+    history.push('/')
   };
 
   return (

@@ -1,9 +1,12 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { 
-  ADD_PRODUCT, 
+import {
+  ADD_PRODUCT,
   ADD_PRODUCT_SUCCESS,
   ADD_PRODUCT_ERROR,
-} from '../types'
+  DOWNLOAD_PRODUCT,
+  DOWNLOAD_PRODUCT_SUCCESS,
+  DOWNLOAD_PRODUCT_ERROR,
+} from "../types";
 
 // All reducers has its own state 
 const initialState = {
@@ -30,6 +33,24 @@ export default function(state = initialState, action) {
         ...state,
         loading: false,
         error: action.payload,
+      }
+    case DOWNLOAD_PRODUCT:
+      return {
+        ...state,
+        loading: action.payload
+      }
+    case DOWNLOAD_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        products: action.payload
+      }
+    case DOWNLOAD_PRODUCT_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
       }
     default: 
       return state;
