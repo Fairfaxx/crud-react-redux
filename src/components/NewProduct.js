@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // Actions de redux
 
 import { createNewProductAction } from "../actions/productActions";
+import { showAlertAction, hideAlertAction } from "../actions/alertActions";
 
 const NewProduct = ({ history }) => {
   //State of the component
@@ -16,7 +17,7 @@ const NewProduct = ({ history }) => {
   // Getting the state
   const loading = useSelector((state) => state.products.loading);
   const error = useSelector((state) => state.products.error);
-
+  const showingAlert = useSelector(state => state.alert.alert)
   // Call the action for productAction
   const addProduct = (product) => {
     dispatch(createNewProductAction(product));
@@ -28,10 +29,16 @@ const NewProduct = ({ history }) => {
 
     //Validate form
     if (name.trim() === "" || price <= 0) {
+      const alert = {
+        msg: "Please fill all the fields",
+        classes: 'alert alert-danger text-center text-uppercase p3'
+      };
+      dispatch(showAlertAction(alert))
+
       return;
     }
-    //Check for errors
-
+    //If there is no error
+    dispatch(hideAlertAction())
     //Create new product
     addProduct({
       name,
@@ -53,6 +60,9 @@ const NewProduct = ({ history }) => {
             <h2 className="text-center mb-4 font-weight-bold">
               Add New Product
             </h2>
+
+            {showingAlert && <p className={showingAlert.classes}>{showingAlert.msg}</p>}
+
             <form onSubmit={handleSubmitNewProduct}>
               <div className="form-group">
                 <label>Product Name</label>

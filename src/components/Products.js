@@ -13,7 +13,7 @@ const Products = () => {
   const loading = useSelector((state) => state.products.loading);
 
   useEffect(() => {
-    //consultar la api
+    //consult la api
     const loadProducts = () => dispatch(downloadProductAction());
     loadProducts();
   }, [dispatch])
@@ -32,12 +32,11 @@ const Products = () => {
           </tr>
         </thead>
         <tbody>
-        {products.lenght === 0 && <h2>No products available yet, add one!</h2>}
+        {products.length === 0 && <h2>No products available yet, add one!</h2>}
           {products.map(product => (
             <Product 
               key={product.id}
-              name={product.name}
-              price={product.price}
+              product={product}
             />
           ))}
         </tbody>

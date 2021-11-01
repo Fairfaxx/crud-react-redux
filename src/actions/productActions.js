@@ -5,6 +5,13 @@ import {
   DOWNLOAD_PRODUCT,
   DOWNLOAD_PRODUCT_SUCCESS,
   DOWNLOAD_PRODUCT_ERROR,
+  GET_PRODUCT_DELETED,
+  PRODUCT_DELETED_SUCCESS,
+  PRODUCT_DELETED_ERROR,
+  GET_PRODUCT_EDIT,
+  START_PRODUCT_EDIT,
+  PRODUCT_EDIT_SUCCESS,
+  PRODUCT_EDIT_ERROR,
 } from "../types";
 
 import axiosClient from "../config/axios";
@@ -58,7 +65,7 @@ const addProductError = (error) => ({
   payload: error
 });
 
-//Funtion to download product item from data base
+//Function to download product item from data base
 export function downloadProductAction() {
   return async (dispatch) => {
     dispatch(downloadProduct());
@@ -85,5 +92,70 @@ const downloadProductSuccess = product => ({
 
 const downloadProductFails = () => ({
   type: DOWNLOAD_PRODUCT_ERROR,
+  payload: true
+})
+
+export function deleteProductAction(id) {
+  return async (dispatch) => {
+    dispatch(deleteProduct(id));
+    console.log(id)
+
+    try {
+      await axiosClient.delete(`/products/${id}`);
+      dispatch(deleteProductSuccess());
+    } catch (error) {
+      dispatch(deleteProductFail());
+    }
+  }
+};
+
+const deleteProduct = (id) => ({
+  type: GET_PRODUCT_DELETED,
+  payload: id
+});
+
+const deleteProductSuccess = () => ({
+  type: PRODUCT_DELETED_SUCCESS,
+});
+
+const deleteProductFail = () => ({
+  type: PRODUCT_DELETED_ERROR,
+});
+
+export function getProductEditAction(product) {
+  return async (dispatch) => {
+    dispatch(getEditProduct(product));
+  }
+}
+
+const getEditProduct = (product) => ({
+  type: GET_PRODUCT_EDIT,
+  payload: product
+});
+
+export function editProductAction(product) {
+  return async (dispatch) => {
+    dispatch(editProduct());
+
+    try {
+      await axiosClient.put(`/products/${product.id}`, product);
+      dispatch(editProductSuccess(product));
+    } catch (error) {
+      dispatch(editProductError())
+    }
+  };
+};
+
+const editProduct = () => ({
+  type: START_PRODUCT_EDIT
+});
+
+const editProductSuccess = (product) => ({
+  type: PRODUCT_EDIT_SUCCESS,
+  payload: product
+});
+
+const editProductError = () => ({
+  type: PRODUCT_EDIT_ERROR,
   payload: true
 })
