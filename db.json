@@ -1,29 +1,39 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Jugo de Zanahoria",
-      "price": "31111"
+      "name": "Empanadas x12",
+      "price": "109",
+      "id": 21
     },
     {
-      "id": 2,
-      "name": "Jugo de Naranja",
-      "price": "1"
+      "name": "Apple Juice",
+      "price": "150",
+      "id": 22
     },
     {
-      "name": "Jugo de Naranja",
-      "price": "300",
-      "id": 3
+      "name": "Chicken Finger x12",
+      "price": "9999",
+      "id": 23
     },
     {
-      "name": "Rib Eye 800g",
-      "price": "200",
-      "id": 4
+      "name": "Pineapple Juice",
+      "price": 195,
+      "id": 24
     },
     {
-      "name": "Jugo de Fresa",
-      "price": "200",
-      "id": 5
+      "name": "Beef x1kg",
+      "price": 999,
+      "id": 25
+    },
+    {
+      "name": "Yerba x1kg",
+      "price": 359,
+      "id": 26
+    },
+    {
+      "name": "Water x1lt",
+      "price": 99,
+      "id": 27
     }
   ]
 }

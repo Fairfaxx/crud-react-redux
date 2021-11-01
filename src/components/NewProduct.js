@@ -4,15 +4,20 @@ import { useDispatch, useSelector } from "react-redux";
 // Actions de redux
 
 import { createNewProductAction } from "../actions/productActions";
+import { showAlertAction, hideAlertAction } from "../actions/alertActions";
 
-const NewProduct = () => {
+const NewProduct = ({ history }) => {
   //State of the component
   const [name, setName] = useState("");
-  const [price, setPrice] = useState('');
+  const [price, setPrice] = useState("");
 
   //Use useDispatch to create a new function
   const dispatch = useDispatch();
 
+  // Getting the state
+  const loading = useSelector((state) => state.products.loading);
+  const error = useSelector((state) => state.products.error);
+  const showingAlert = useSelector(state => state.alert.alert)
   // Call the action for productAction
   const addProduct = (product) => {
     dispatch(createNewProductAction(product));
@@ -24,15 +29,27 @@ const NewProduct = () => {
 
     //Validate form
     if (name.trim() === "" || price <= 0) {
+      const alert = {
+        msg: "Please fill all the fields",
+        classes: 'alert alert-danger text-center text-uppercase p3'
+      };
+      dispatch(showAlertAction(alert))
+
       return;
     }
-    //Check for errors
-
+    //If there is no error
+    dispatch(hideAlertAction())
     //Create new product
-    addProduct({ 
-      name, 
-      price
+    addProduct({
+      name,
+      price,
     });
+
+    setName("");
+    setPrice("");
+
+    //Redirect to home page
+    history.push('/')
   };
 
   return (
@@ -43,6 +60,9 @@ const NewProduct = () => {
             <h2 className="text-center mb-4 font-weight-bold">
               Add New Product
             </h2>
+
+            {showingAlert && <p className={showingAlert.classes}>{showingAlert.msg}</p>}
+
             <form onSubmit={handleSubmitNewProduct}>
               <div className="form-group">
                 <label>Product Name</label>
@@ -73,6 +93,14 @@ const NewProduct = () => {
                 Add
               </button>
             </form>
+            {loading && (
+              <h3 className="bg-success mt-4 p-2 text-center">Loading...</h3>
+            )}
+            {error && (
+              <h3 className="alert alert-danger mt-4 p-2 text-white text-center">
+                There was an error while loading
+              </h3>
+            )}
           </div>
         </div>
       </div>
